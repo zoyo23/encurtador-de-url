@@ -3,4 +3,4 @@
 Disponível em: https://resumeurl.herokuapp.com/
 
 ## Resumo
-Projeto desenvolvido em Node.js com Sqlite para fixação de técnicas de desenvolvimento node com a finaliade de encurtar/ofuscar URL's.
+Projeto desenvolvido em Node.js com Sqlite para fixação de técnicas de desenvolvimento node com a finalidade de encurtar/ofuscar URL's.
