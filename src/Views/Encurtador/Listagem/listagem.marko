@@ -19,19 +19,26 @@
             <th>Cliques</th>
             <th>Data de Criação</th>
         </thead>
-        <tr>
-            <td>1</td>
-            <td>https://resumeurl.herokuapp.com/teste01</td>
-            <td>http://google.com.br</td>
-            <td>5</td>
-            <td>19/06/2020 05:30h</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>https://resumeurl.herokuapp.com/teste02</td>
-            <td>http://facebook.com.br</td>
-            <td>3</td>
-            <td>19/06/2020 05:30h</td>
+        <tr for(item in data.itens)>
+            <td>
+                ${item.id}
+            </td>
+            <td>
+                <a href="${item.shortUrl}" target="_blank">
+                    ${item.shortUrl}
+                </a>
+            </td>
+            <td>
+                <a href="${item.destinyUrl}" target="_blank">
+                    ${item.destinyUrl}
+                </a>
+            </td>
+            <td>
+                ${item.clickCounter}
+            </td>
+            <td>
+                ${item.createDate}
+            </td>
         </tr>
     </table>
 </body>
