@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Resumir/Ofuscar URL's</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Resumir/Ofuscar URL's</h1>
+
+        <form action="/resume" method="POST" class="my-4 form-inline">
+            <label for="destinyUrl" class="sr-only">Url Destino</label>
+            <input required type="url" name="destinyUrl" id="destinyUrl" placeholder="Url Destino"
+                class="form-control col mr-2">
+
+            <button type="submit" class="btn btn-success">
+                Resumir
+            </button>
+        </form>
+
+        <table class="table table-responsive table-striped table-hover">
+            <thead>
+                <th>ID</th>
+                <th>URL</th>
+                <th>Destino</th>
+                <th>Cliques</th>
+                <th>Data de Criação</th>
+            </thead>
+            <% itens.forEach(item => { %>
+            <tr>
+                <td>
+                    <%= item.id %>
+                </td>
+                <td>
+                    <a href="<%= item.short_url %>" target="_blank">
+                        <%= item.short_url %>
+                    </a>
+                </td>
+                <td>
+                    <a href="<%= item.destiny_url %>" target="_blank">
+                        <%= item.destiny_url %>
+                    </a>
+                </td>
+                <td>
+                    <%= item.click_counter %>
+                </td>
+                <td>
+                    <%= item.create_date %>
+                </td>
+            </tr>
+            <% }) %>
+        </table>
+    </div>
+</body>
+
+</html>
