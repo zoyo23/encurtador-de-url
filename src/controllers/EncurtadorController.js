@@ -27,11 +27,11 @@ module.exports = {
             )
             values 
             (
-                '${destiny_url}',
-                '${shortId.generate()}'
+                ?,
+                ?
             )`;
 
-        await db.run(INSERT_RESUME_URL);
+        await db.run(INSERT_RESUME_URL, [destiny_url, shortId.generate()]);
 
         return resp.redirect('/');
     },
@@ -40,11 +40,11 @@ module.exports = {
 
         const resumeUrl = req.params.resumeUrl;
 
-        const FIND_RESUME_URL = `SELECT * FROM resume_url where short_url = '${resumeUrl}'`;
+        const FIND_RESUME_URL = `SELECT * FROM resume_url where short_url = ?`;
 
         if (resumeUrl) {
 
-            await db.all(FIND_RESUME_URL, async (err, result) => {
+            await db.all(FIND_RESUME_URL,[resumeUrl], async (err, result) => {
 
                 if (!result || err) {
                     return resp.status(404).json({ message: 'Rota não registrada.' });
@@ -55,9 +55,9 @@ module.exports = {
                 let countIncremented = ResumeUrlRegister.click_counter + 1;
                 let itemId = ResumeUrlRegister.id;
 
-                const INCREMENTE_RESUME_URL_CLICKS = `UPDATE resume_url SET click_counter = ${countIncremented} WHERE id = ${itemId}`;
+                const INCREMENTE_RESUME_URL_CLICKS = `UPDATE resume_url SET click_counter = ? WHERE id = ?`;
 
-                await db.run(INCREMENTE_RESUME_URL_CLICKS);
+                await db.run(INCREMENTE_RESUME_URL_CLICKS, [countIncremented, itemId]);
 
                 return resp.redirect(ResumeUrlRegister.destiny_url);
 
